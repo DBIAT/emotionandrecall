@@ -5,10 +5,23 @@ date: "Saturday, May 30, 2015"
 output: html_document
 ---
 
-#Data analyses and figure creation for the Emotion and Recall YouTube Experiment
+#Data Analyses for the Emotion and Recall YouTube Experiment
 
 ###Dominic B.I.A. Tzimisces
 
 ##INTRODUCTION
 
 This analysis was created to explain the data analysis behind the [Emotion and Recall YouTube Experiment](https://www.youtube.com/watch?v=iphxvoAOpE4).  All the materials--the videos, informed consent, etc.--can be found at the above link.  NOTE BENE:  the link--and the videos--do not work properly on Apple products that do not contain Flash support, nor do they work in many smartphones (which, likewise, often do not have Flash support).  Following the links is best done on a PC. 
+
+These data are representative of observations from 43 participants who participated in the experiment.
+
+Although there were quite a number of variables included in the raw data, only the variables valence, arousal, and number of correct responses were analyzed, as they dealt specifically with the primary hypotheses.  It is these three variables which are included in the presentation and poster.
+
+##DATA PREPARATION
+
+First, the data needed to be 'read' by rStudio...
+
+```{r}
+affect<-read.csv("affect.csv")
+```
+
