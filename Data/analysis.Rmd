@@ -101,4 +101,7 @@ summary(aov(thought~valence*arousal,data=affect2))
 
 No significant interactions here, either.
 
+##SUMMARY
+
+Although YouTube appears to be a viable platform for experimental use in between-subjects quasi-experiments, there are limitations this study brought out. However, given the proper instructions and participant fidelity to them, there is no reason why YouTube experimentation and quasi-experimentation could not be expanded for certain studies.
 
