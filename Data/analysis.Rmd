@@ -13,7 +13,7 @@ output: html_document
 
 This analysis was created to explain the data analysis behind the [Emotion and Recall YouTube Experiment](https://www.youtube.com/watch?v=iphxvoAOpE4).  All the materials--the videos, informed consent, etc.--can be found at the above link.  NOTE BENE:  the link--and the videos--do not work properly on Apple products that do not contain Flash support, nor do they work in many smartphones (which, likewise, often do not have Flash support).  Following the links is best done on a PC. 
 
-These data are representative of observations from 43 participants who participated in the experiment.
+There are two datasets that were analyzed.  One set ("affect.csv" or "affect") is representative of observations from 43 participants who participated in the experiment, both those who participated for college extra credit (EOU students) and lay participants who received no compensation.  A second dataset ("affect2.csv" or "affect2") is actually a subset of "affect" and is representative of only those 19 participants who did not participate in the experiment for extra credit (that is, it is exclusively non-EOU students).  Other than the division between students and non-students, both datasets were analyzed identically.
 
 Although there were quite a number of variables included in the raw data, only the variables valence, arousal, and number of correct responses were analyzed, as they dealt specifically with the primary hypotheses.  It is these three variables which are included in the presentation and poster.
 
@@ -30,4 +30,22 @@ Next, there was the need to change 'subject' into a factor...
 ```{r}
 affect$subject<-factor(affect$subject)
 ```
+
+##PRIMARY ANALYSIS
+
+The variable of interest is memory as measured by word recall.
+
+There are two factors being studied (valence/arousal). Each factor has two levels: Valence (negative/positive) and Arousal (high/low)
+
+There are three null hypotheses to be tested: H01: Both valence groups have, on the average, equal word recall. H02: Both arousal groups have, on the average, equal word recall. H03: The two factors-valence and arousal-are independent.
+
+Since we have multiple factors and levels, we need to use a two-way between-subjects ANOVA.
+
+What we're looking for is to see whether or not we can predict the number of correctly recalled words from valence and arousal, utilizing first the comprehensive dataset (affect.csv):
+
+```{r}
+summary(aov(correct~valence*arousal,data=affect))
+```
+
+From the results of the combined dataset, F(1,39)=2.28, p=0.14 and F(1,39)=39, p=0.97, we can conclude that the number of correctly recalled words is not associated with valence or arousal.
 
