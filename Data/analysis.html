@@ -84,9 +84,22 @@ img {
 <pre class="r"><code>affect&lt;-read.csv(&quot;affect.csv&quot;)</code></pre>
 <p>Next, there was the need to change ‘subject’ into a factor…</p>
 <pre class="r"><code>affect$subject&lt;-factor(affect$subject)</code></pre>
+<p>Check the structure to see if the change took…</p>
+<pre class="r"><code>str(affect)</code></pre>
+<pre><code>## 'data.frame':    43 obs. of  10 variables:
+##  $ subject  : Factor w/ 43 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ affect   : Factor w/ 4 levels &quot;NH&quot;,&quot;NL&quot;,&quot;PH&quot;,..: 2 2 4 4 2 4 4 1 1 4 ...
+##  $ condition: int  1 1 2 2 1 2 2 3 3 2 ...
+##  $ valence  : Factor w/ 2 levels &quot;negative&quot;,&quot;positive&quot;: 1 1 2 2 1 2 2 1 1 2 ...
+##  $ arousal  : Factor w/ 2 levels &quot;high&quot;,&quot;low&quot;: 2 2 2 2 2 2 2 1 1 2 ...
+##  $ total    : int  20 20 20 20 20 20 20 20 20 20 ...
+##  $ thought  : int  3 6 9 8 11 10 10 4 13 11 ...
+##  $ correct  : int  2 3 8 8 11 9 10 2 6 10 ...
+##  $ sex      : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 1 2 2 2 1 1 1 1 2 ...
+##  $ age      : int  29 45 55 37 45 34 26 21 53 43 ...</code></pre>
 </div>
-<div id="primary-analysis" class="section level2">
-<h2>PRIMARY ANALYSIS</h2>
+<div id="primary-analyses" class="section level2">
+<h2>PRIMARY ANALYSES</h2>
 <p>The variable of interest is memory as measured by word recall.</p>
 <p>There are two factors being studied (valence/arousal). Each factor has two levels: Valence (negative/positive) and Arousal (high/low)</p>
 <p>There are three null hypotheses to be tested: H01: Both valence groups have, on the average, equal word recall. H02: Both arousal groups have, on the average, equal word recall. H03: The two factors-valence and arousal-are independent.</p>
@@ -98,7 +111,52 @@ img {
 ## arousal          1    0.0   0.009   0.001  0.973
 ## valence:arousal  1    0.0   0.008   0.001  0.975
 ## Residuals       39  321.1   8.233</code></pre>
-<p>From the results of the combined dataset, we can conclude that the number of correctly recalled words is not associated with valence or arousal</p>
+<p>From the results of the combined dataset, F(1,39)=2.28, p=0.14 and F(1,39)=39, p=0.97, we can conclude that the number of correctly recalled words is not associated with valence or arousal. The data failed to reject the null.</p>
+<p>However, there appeared to be an interesting pattern I discerned as I did a cursory check through the data: it appeared as if those who took the experiment for extra credit–irrespective of valence or arousal level–reported less recalled words. This led me to probe deeper…</p>
+<pre class="r"><code>affect2&lt;-read.csv(&quot;affect2.csv&quot;)</code></pre>
+<p>Once again, there is the need to change ‘subject’ into a factor…</p>
+<pre class="r"><code>affect2$subject&lt;-factor(affect2$subject)</code></pre>
+<p>Check the structure to see if the change took…</p>
+<pre class="r"><code>str(affect2)</code></pre>
+<pre><code>## 'data.frame':    19 obs. of  10 variables:
+##  $ subject  : Factor w/ 19 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ affect   : Factor w/ 4 levels &quot;NH&quot;,&quot;NL&quot;,&quot;PH&quot;,..: 2 2 4 4 2 4 4 1 1 4 ...
+##  $ condition: int  1 1 2 2 1 2 2 3 3 2 ...
+##  $ valence  : Factor w/ 2 levels &quot;negative&quot;,&quot;positive&quot;: 1 1 2 2 1 2 2 1 1 2 ...
+##  $ arousal  : Factor w/ 2 levels &quot;high&quot;,&quot;low&quot;: 2 2 2 2 2 2 2 1 1 2 ...
+##  $ total    : int  20 20 20 20 20 20 20 20 20 20 ...
+##  $ thought  : int  3 6 9 8 11 10 10 4 13 11 ...
+##  $ correct  : int  2 3 8 8 11 9 10 2 6 10 ...
+##  $ sex      : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 1 2 2 2 1 1 1 1 2 ...
+##  $ age      : int  29 45 55 37 45 34 26 21 53 43 ...</code></pre>
+<p>Now let’s run the two-way between-subjects ANOVA once more…</p>
+<pre class="r"><code>summary(aov(correct~valence*arousal,data=affect2))</code></pre>
+<pre><code>##                 Df Sum Sq Mean Sq F value Pr(&gt;F)  
+## valence          1  41.38   41.38   4.890 0.0429 *
+## arousal          1   8.00    8.00   0.946 0.3463  
+## valence:arousal  1   1.70    1.70   0.201 0.6600  
+## Residuals       15 126.92    8.46                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<p>In this non-student dataset, at F(1,15)=4.89, p=0.043, we can conclude that the number of correctly recalled words is significantly associated with valence but at F(1,15)=0.95, p=0.35, it is not significantly associated with the level of arousal. Additionally, at F(1,15)=0.20, p=0.66, there were no interactions between valence and arousal.</p>
+</div>
+<div id="supplementary-analyses" class="section level2">
+<h2>SUPPLEMENTARY ANALYSES</h2>
+<p>The following analysis was done to ascertain whether or not valence and/or arousal interacted with the number of responses the participants gave, irrespective of whether or not they were correct (listed as “thought” factor in both datasets).</p>
+<p>First, using the combined dataset…</p>
+<pre class="r"><code>summary(aov(thought~valence*arousal,data=affect))</code></pre>
+<pre><code>##                 Df Sum Sq Mean Sq F value Pr(&gt;F)
+## valence          1    0.0   0.001   0.000  0.993
+## arousal          1    3.4   3.443   0.341  0.562
+## valence:arousal  1    1.1   1.122   0.111  0.740
+## Residuals       39  393.3  10.084</code></pre>
+<p>Now, let’s check the non-student (“affect2”) dataset…</p>
+<pre class="r"><code>summary(aov(thought~valence*arousal,data=affect2))</code></pre>
+<pre><code>##                 Df Sum Sq Mean Sq F value Pr(&gt;F)
+## valence          1   6.70   6.695   0.707  0.414
+## arousal          1   1.38   1.383   0.146  0.708
+## valence:arousal  1  11.52  11.523   1.216  0.287
+## Residuals       15 142.08   9.472</code></pre>
 </div>
 </div>
 
