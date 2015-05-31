@@ -25,3 +25,9 @@ First, the data needed to be 'read' by rStudio...
 affect<-read.csv("affect.csv")
 ```
 
+Next, there was the need to change 'subject' into a factor...
+
+```{r}
+affect$subject<-factor(affect$subject)
+```
+
