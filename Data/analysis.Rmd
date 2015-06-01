@@ -13,7 +13,7 @@ output: html_document
 
 This analysis was created to explain the data analysis behind the [Emotion and Recall YouTube Experiment](https://www.youtube.com/watch?v=iphxvoAOpE4).  All the materials--the videos, informed consent, etc.--can be found at the above link.  NOTE BENE:  the link--and the videos--do not work properly on Apple products that do not contain Flash support, nor do they work in many smartphones (which, likewise, often do not have Flash support).  Following the links is best done on a PC. 
 
-There are two datasets that were analyzed.  One set ("affect.csv" or "affect") is representative of observations from 43 participants who participated in the experiment, both those who participated for college extra credit (EOU students) and lay participants who received no compensation.  A second dataset ("affect2.csv" or "affect2") is actually a subset of "affect" and is representative of only those 19 participants who did not participate in the experiment for extra credit (that is, it is exclusively non-EOU students).  Other than the division between students and non-students, both datasets were analyzed identically.
+There are two datasets that were analyzed.  One set ("affect.csv" or "affect") is representative of observations from 43 participants who participated in the experiment, both those who participated for college extra credit (EOU students) and lay participants who received no compensation.  A second dataset ("affect2.csv" or "affect2") is actually a subset of "affect" and is representative of only those 20 participants who did not participate in the experiment for extra credit (that is, it is exclusively non-EOU students).  Other than the division between students and non-students, both datasets were analyzed identically.
 
 Although there were quite a number of variables included in the raw data, only the variables valence, arousal, and number of correct responses were analyzed, as they dealt specifically with the primary hypotheses.  It is these three variables which are included in the presentation and poster.
 
@@ -79,7 +79,15 @@ Now let's run the two-way between-subjects ANOVA once more...
 summary(aov(correct~valence*arousal,data=affect2))
 ```
 
-In this non-student dataset, at F(1,15)=4.89, p=0.043, we can conclude that the number of correctly recalled words is significantly associated with valence but at F(1,15)=0.95, p=0.35, it is not significantly associated with the level of arousal. Additionally, at F(1,15)=0.20, p=0.66, there were no interactions between valence and arousal.
+In this non-student dataset, at F(1,16)=5.55, p=0.032, we can conclude that the number of correctly recalled words is significantly associated with valence but at F(1,16)=0.82, p=0.38, it is not significantly associated with the level of arousal. Additionally, at F(1,15)=0.12, p=0.74, there were no interactions between valence and arousal.
+
+Since there was a significant association between non-students' recollected words and valence, I wanted to be certain that student status was, indeed, the issue at hand. An additional column was added to affect.csv and each entry was coded with 'y' for student and 'n' for nonstudent.  Another two-way between-subjects ANOVA will be run...
+
+```{r}
+summary(aov(correct~student*valence*arousal,data=affect))
+```
+
+This analysis clearly shows, at F(1,35)=5.172, p=0.03, that the number of correctly recalled words is significantly associated with student status and that no other significant interactions were observed.
 
 ##SUPPLEMENTARY ANALYSES
 
