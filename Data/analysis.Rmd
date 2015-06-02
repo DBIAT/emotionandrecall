@@ -99,7 +99,16 @@ Indeed, with t(35.98)=-2.23, p=0.03, we find that there was a significant differ
 
 Now for a bar graph...
 
-
+```{r}
+library("dplyr")
+temp<-affect%>%group_by(student)%>%summarize(means=mean(correct),
+              sems=sd(correct)/sqrt(length(correct)))
+library("ggplot2")
+f<-ggplot(temp,aes(x=factor(student),y=means))+
+    geom_bar(stat="identity", color="black",fill=c("deeppink","deepskyblue2"))+
+    geom_errorbar(aes(ymax=means+sems, ymin=means-sems), width=.1)
+f
+```
 
 ##SUPPLEMENTARY ANALYSES
 
