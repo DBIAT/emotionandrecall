@@ -87,7 +87,19 @@ Since there was a significant association between non-students' recollected word
 summary(aov(correct~student*valence*arousal,data=affect))
 ```
 
-This analysis clearly shows, at F(1,35)=5.172, p=0.03, that the number of correctly recalled words is significantly associated with student status and that no other significant interactions were observed.
+This analysis clearly shows, at F(1,35)=5.172, p=0.03, that the number of correctly recalled words was significantly associated with student status and that no other significant interactions were observed.
+
+Next, we'll do a t-test to help confirm the different results we've found between student and non-student.
+
+```{r}
+t.test(affect$correct[affect$student=="y"],affect$correct[affect$student=="n"])
+```
+
+Indeed, with t(35.98)=-2.23, p=0.03, we find that there was a significant difference in the number of correctly recalled words between students and non-students.
+
+Now for a bar graph...
+
+
 
 ##SUPPLEMENTARY ANALYSES
 
