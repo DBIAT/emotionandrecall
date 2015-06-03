@@ -19,3 +19,4 @@ subject,affect,condition,valence,arousal,total,thought,correct,sex,age,student
 18,NL,1,negative,low,20,5,4,female,18,n
 24,PH,4,positive,high,20,10,9,female,43,n
 29,NL,1,negative,low,20,10,10,female,20,n
+36,PL,2,positive,low,20,4,3,male,47,n
