@@ -10,7 +10,7 @@ course of PSY 440 Methods and Labs in Experimental Psychology and PSY 441 Projec
 Experimental Psychology during the Winter and Spring terms of 2015.
 
 The data were culled from our [Emotion and Recall YouTube Experiment]
-(https://www.youtube.com/watch?v=iphxvoAOpE4). Data was subsequently
+(https://www.youtube.com/watch?v=iphxvoAOpE4). It was subsequently
 processed and analyzed in R Studio and the results were presented to the faculty of
 Eastern Oregon University in partial fulfillment for the requirements of a baccalaureate
 in psychology.
