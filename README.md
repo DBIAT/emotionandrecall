@@ -34,7 +34,7 @@ large media files uploaded to YouTube for each Condition.
     * pptx and mp4 presentation files: The PowerPoint (and converted mp4) files used for informed consent, instructions,
     and post-study instructions.
     * wordcomp.pdf: The source of the neutrally valenced words, taken from Anderson, Carnaygey, & Eubanks (2003).
-* **presentation**: A folder containing the presentation materials that includes:
+* **Presentation**: A folder containing the presentation materials that includes:
     * EmotionandRecall.pptx & pdf:  PowerPoint and pdf formats of the poster presentation.
 
 Cheers,
